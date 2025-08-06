@@ -6,11 +6,13 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -45,11 +47,8 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Role relationship (User belongs to Role)
-     */
-    public function role()
+    public function locations()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Location::class);
     }
 }

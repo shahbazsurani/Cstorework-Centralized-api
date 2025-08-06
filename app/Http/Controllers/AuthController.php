@@ -10,59 +10,58 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+
     public function register(Request $request)
     {
-        // Get role: First user is SuperAdmin, rest are User
-        if(User::count() === 0) {
-            $validated = $request->validate([
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|confirmed',
-            ]);
+        $creator = $request->user(); // authenticated user
 
-            $role = Role::where('name', 'SuperAdmin')->first();
+        $newRole = $request->input('role');
+        $locationIds = $request->input('location_ids', []);
 
-            // Create user with role
-            $user = User::create([
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-                'password' => Hash::make($validated['password']),
-                'role_id' => $role->id,
-            ]);
-
-            return response()->json([
-                'token' => $user->createToken('api-token')->plainTextToken,
-                'user' => $user,
-            ]);
-        }
-
-        $user = $request->user();
-
-        // Check if user is SuperAdmin
-        if (!$user || $user->role->name !== 'SuperAdmin') {
-            return response()->json(['message' => 'Forbidden'], 403);
-        }
-
-        $validated = $request->validate([
+        // Validation (optional)
+        $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
-            'password' => 'required|string|confirmed',
-            'role' => 'required|in:User,UserAdmin,LocationAdmin,ApplicationAdmin', // restrict roles
+            'password' => 'required|string|min:6',
+            'role' => 'required|exists:roles,name',
         ]);
 
-        $role = Role::where('name', $validated['role'])->first();
+        // Check creator's permission to assign role
+        if ($creator->hasRole('SuperAdmin')) {
+            // allowed
+        } elseif ($creator->hasRole('LocationAdmin')) {
+            $allowedRoles = ['LocationAdmin', 'ApplicationAdmin', 'UserAdmin', 'User'];
 
+            if (!in_array($newRole, $allowedRoles)) {
+                return response()->json(['error' => 'Forbidden role assignment'], 403);
+            }
+
+            // Ensure they don’t assign locations they don’t control
+            $creatorLocationIds = $creator->locations()->pluck('id')->toArray();
+
+            if (array_diff($locationIds, $creatorLocationIds)) {
+                return response()->json(['error' => 'You can only assign locations you control'], 403);
+            }
+        } else {
+            return response()->json(['error' => 'You are not allowed to create users'], 403);
+        }
+
+        // Create new user
         $newUser = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-            'role_id' => $role->id,
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
         ]);
 
-        return response()->json([
-            'user' => $newUser,
-            'token' => $newUser->createToken('api-token')->plainTextToken,
-        ]);
+        // Assign role
+        $newUser->assignRole($newRole);
+
+        // Attach locations if any
+        if (!empty($locationIds)) {
+            $newUser->locations()->sync($locationIds);
+        }
+
+        return response()->json(['message' => 'User created', 'user' => $newUser], 201);
     }
 
     public function login(Request $request)
@@ -71,14 +70,15 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        $user = Auth::user()->load('role');
+        $user = Auth::user();
+
 
         return response()->json([
             'token' => $user->createToken('api-token')->plainTextToken,
             'user' => [
                 'name' => $user->name,
                 'email' => $user->email,
-                'role' => $user->role->name ?? null,
+                'roles' => $user->getRoleNames(),
             ],
         ]);
     }

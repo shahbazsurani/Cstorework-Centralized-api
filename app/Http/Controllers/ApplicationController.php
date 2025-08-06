@@ -7,59 +7,31 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return Application::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate(['name' => 'required|string']);
+        return Application::create($data);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Application $application)
     {
-        //
+        return $application;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Application $application)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Application $application)
     {
-        //
+        $application->update($request->only('name'));
+        return $application;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Application $application)
     {
-        //
+        $application->delete();
+        return response()->json(['message' => 'Deleted']);
     }
 }
