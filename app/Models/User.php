@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -31,12 +31,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'id',
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * The attributes that should be cast to native types.
      */
     protected function casts(): array
     {
@@ -44,5 +43,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Role relationship (User belongs to Role)
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }
