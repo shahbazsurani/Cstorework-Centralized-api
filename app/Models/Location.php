@@ -10,7 +10,7 @@ class Location extends BaseModel
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'location_user');
     }
 
     public function getRouteKeyName()

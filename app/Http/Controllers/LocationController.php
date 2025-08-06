@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Location;
+use App\Models\User;
 
 class LocationController extends Controller
 {
@@ -18,24 +19,20 @@ class LocationController extends Controller
             return Location::all();
         }
 
-        if ($user->hasRole('LocationAdmin')) {
-            return $user->locations; // only assigned locations
-        }
-
-        return response()->json(['error' => 'Forbidden'], 403);
+        return $user->locations;
     }
 
     public function store(Request $request)
     {
-        $user = $request->user();
-
-        $data = $request->validate(['name' => 'required|string']);
-
-        $location = Location::create($data);
-
-        if ($user->hasRole('LocationAdmin')) {
-            $user->locations()->attach($location->id);
+        if (!auth()->user()->hasRole('SuperAdmin')) {
+            return response()->json(['error' => 'Forbidden'], 403);
         }
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $location = Location::create(['name' => $request->name]);
 
         return response()->json($location, 201);
     }
@@ -82,4 +79,5 @@ class LocationController extends Controller
 
         return response()->json(['error' => 'Forbidden'], 403);
     }
+
 }

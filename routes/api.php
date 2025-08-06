@@ -4,13 +4,24 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\UserController;
 
-// SuperAdmin only
-Route::middleware(['auth:sanctum', 'role:SuperAdmin'])->group(function () {
-    Route::apiResource('applications', ApplicationController::class);
+
+Route::middleware('auth:sanctum')->group(function () {
+    // SuperAdmin only
+    Route::middleware('role:SuperAdmin')->group(function () {
+        Route::apiResource('applications', ApplicationController::class);
+        Route::post('/users/{user}/addLocationAdmin/{location}', [UserController::class, 'assignLocationAdmin']);
+    });
+
+    // SuperAdmin or LocationAdmin
+    Route::middleware('role:SuperAdmin|LocationAdmin|UserAdmin')->group(function () {
+        Route::apiResource('locations', LocationController::class);
+
+    });
+
 });
 
-// SuperAdmin or LocationAdmin
-Route::middleware(['auth:sanctum', 'role:SuperAdmin|LocationAdmin'])->group(function () {
-    Route::apiResource('locations', LocationController::class);
-});
+
+
+
