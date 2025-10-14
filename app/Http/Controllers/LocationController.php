@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Location;
-use App\Models\User;
+use App\Http\Requests\LocationStoreRequest;
+use App\Http\Requests\LocationUpdateRequest;
+use App\Http\Resources\LocationResource;
+use App\Enums\Role;
 
 class LocationController extends Controller
 {
@@ -13,71 +16,61 @@ class LocationController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Location::class);
+
+        $perPage = min(max((int) $request->query('per_page', 15), 1), 100);
+        $search = trim((string) $request->query('q', ''));
+
         $user = $request->user();
 
-        if ($user->hasRole('SuperAdmin')) {
-            return Location::all();
+        if ($user->hasRole(Role::SuperAdmin->value)) {
+            $query = Location::query();
+        } else {
+            $query = $user->locations()->getQuery();
         }
 
-        return $user->locations;
+        if ($search !== '') {
+            $query->where('name', 'like', '%'.$search.'%');
+        }
+
+        $locations = $query->orderBy('name')->paginate($perPage)->appends($request->query());
+
+        return LocationResource::collection($locations);
     }
 
-    public function store(Request $request)
+    public function store(LocationStoreRequest $request)
     {
-        if (!auth()->user()->hasRole('SuperAdmin')) {
-            return response()->json(['error' => 'Forbidden'], 403);
-        }
+        $this->authorize('create', Location::class);
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
+        $location = Location::create($request->validated());
 
-        $location = Location::create(['name' => $request->name]);
-
-        return response()->json($location, 201);
+        return (new LocationResource($location))
+            ->response()
+            ->setStatusCode(201);
     }
 
     public function show(Request $request, Location $location)
     {
-        $user = $request->user();
+        $this->authorize('view', $location);
 
-        if ($user->hasRole('SuperAdmin')) return $location;
-
-        if ($user->hasRole('LocationAdmin') && $user->locations->contains($location)) {
-            return $location;
-        }
-
-        return response()->json(['error' => 'Forbidden'], 403);
+        return new LocationResource($location);
     }
 
-    public function update(Request $request, Location $location)
+    public function update(LocationUpdateRequest $request, Location $location)
     {
-        $user = $request->user();
+        $this->authorize('update', $location);
 
-        if (
-            $user->hasRole('SuperAdmin') ||
-            ($user->hasRole('LocationAdmin') && $user->locations->contains($location))
-        ) {
-            $location->update($request->only('name'));
-            return response()->json($location);
-        }
+        $location->update($request->validated());
 
-        return response()->json(['error' => 'Forbidden'], 403);
+        return new LocationResource($location);
     }
 
     public function destroy(Request $request, Location $location)
     {
-        $user = $request->user();
+        $this->authorize('delete', $location);
 
-        if (
-            $user->hasRole('SuperAdmin') ||
-            ($user->hasRole('LocationAdmin') && $user->locations->contains($location))
-        ) {
-            $location->delete();
-            return response()->json(['message' => 'Deleted']);
-        }
+        $location->delete();
 
-        return response()->json(['error' => 'Forbidden'], 403);
+        return response()->json(['message' => 'Deleted']);
     }
-
 }

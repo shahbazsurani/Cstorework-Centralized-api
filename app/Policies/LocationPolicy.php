@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
+use App\Enums\Permission as Perm;
+use App\Enums\Role;
 use App\Models\Location;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class LocationPolicy
 {
@@ -13,7 +14,7 @@ class LocationPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->can(Perm::LocationsView->value);
     }
 
     /**
@@ -21,13 +22,14 @@ class LocationPolicy
      */
     public function view(User $user, Location $location): bool
     {
-        // Allow SuperAdmin to view all
-        if ($user->hasRole('SuperAdmin')) {
+        // SuperAdmin can view all
+        if ($user->hasRole(Role::SuperAdmin->value)) {
             return true;
         }
 
-        // Allow LocationAdmin to view only their assigned locations
-        return $user->locations->contains('id', $location->id);
+        // Other users need permission and to be assigned to the location
+        return $user->can(Perm::LocationsView->value)
+            && $user->locations->contains('id', $location->id);
     }
 
     /**
@@ -35,7 +37,7 @@ class LocationPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->can(Perm::LocationsCreate->value);
     }
 
     /**
@@ -43,7 +45,12 @@ class LocationPolicy
      */
     public function update(User $user, Location $location): bool
     {
-        return $this->view($user, $location);
+        if ($user->hasRole(Role::SuperAdmin->value)) {
+            return $user->can(Perm::LocationsUpdate->value);
+        }
+
+        return $user->can(Perm::LocationsUpdate->value)
+            && $user->locations->contains('id', $location->id);
     }
 
     /**
@@ -51,7 +58,12 @@ class LocationPolicy
      */
     public function delete(User $user, Location $location): bool
     {
-        return $this->view($user, $location);
+        if ($user->hasRole(Role::SuperAdmin->value)) {
+            return $user->can(Perm::LocationsDelete->value);
+        }
+
+        return $user->can(Perm::LocationsDelete->value)
+            && $user->locations->contains('id', $location->id);
     }
 
     /**
