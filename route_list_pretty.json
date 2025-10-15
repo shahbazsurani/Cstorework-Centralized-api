@@ -1,0 +1,1299 @@
+﻿{
+    "value":  [
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "/",
+                      "name":  null,
+                      "action":  "Closure",
+                      "middleware":  [
+                                         "web"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/applications",
+                      "name":  "applications.index",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/applications",
+                      "name":  "applications.store",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/applications/{application}",
+                      "name":  "applications.show",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/applications/{application}",
+                      "name":  "applications.update",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/applications/{application}",
+                      "name":  "applications.destroy",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/locations",
+                      "name":  "locations.index",
+                      "action":  "App\\Http\\Controllers\\LocationController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/locations",
+                      "name":  "locations.store",
+                      "action":  "App\\Http\\Controllers\\LocationController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/locations/{location}",
+                      "name":  "locations.show",
+                      "action":  "App\\Http\\Controllers\\LocationController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/locations/{location}",
+                      "name":  "locations.update",
+                      "action":  "App\\Http\\Controllers\\LocationController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/locations/{location}",
+                      "name":  "locations.destroy",
+                      "action":  "App\\Http\\Controllers\\LocationController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/login",
+                      "name":  "api.",
+                      "action":  "App\\Http\\Controllers\\AuthController@login",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Routing\\Middleware\\ThrottleRequests:10,1"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/register",
+                      "name":  "api.",
+                      "action":  "App\\Http\\Controllers\\AuthController@register",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/dashboard",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\DashboardController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/documents/upload",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\DocumentsController@upload",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/items",
+                      "name":  "items.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/items",
+                      "name":  "items.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/items/{item}",
+                      "name":  "items.show",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/reminders/items/{item}",
+                      "name":  "items.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/items/{item}",
+                      "name":  "items.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/items/{item}/complete",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@complete",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/items/{item}/documents/{document}",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\DocumentsController@attach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/items/{item}/documents/{document}",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\DocumentsController@detach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/items/{item}/notifications",
+                      "name":  "notifications.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\NotificationsController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/items/{item}/notifications",
+                      "name":  "notifications.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\NotificationsController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/items/{item}/notifications/{notification}",
+                      "name":  "notifications.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\NotificationsController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/items/{item}/recurrences",
+                      "name":  "recurrences.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\RecurrencesController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/items/{item}/recurrences",
+                      "name":  "recurrences.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\RecurrencesController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/reminders/items/{item}/recurrences/{recurrence}",
+                      "name":  "recurrences.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\RecurrencesController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/items/{item}/recurrences/{recurrence}",
+                      "name":  "recurrences.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\RecurrencesController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/items/{item}/reopen",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@reopen",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/items/{item}/stages/{stage}",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@attach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/items/{item}/stages/{stage}",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@detach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/items/{item}/subtasks",
+                      "name":  "subtasks.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/items/{item}/subtasks",
+                      "name":  "subtasks.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/items/{item}/subtasks/{subtask}",
+                      "name":  "subtasks.show",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/reminders/items/{item}/subtasks/{subtask}",
+                      "name":  "subtasks.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/items/{item}/subtasks/{subtask}",
+                      "name":  "subtasks.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/items/{item}/tags/{tag}",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@attach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/items/{item}/tags/{tag}",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@detach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/search",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\SearchController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/shares",
+                      "name":  "shares.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SharingController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/shares",
+                      "name":  "shares.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SharingController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/shares/{share}",
+                      "name":  "shares.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SharingController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/stages",
+                      "name":  "stages.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/stages",
+                      "name":  "stages.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/stages/{stage}",
+                      "name":  "stages.show",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/reminders/stages/{stage}",
+                      "name":  "stages.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/stages/{stage}",
+                      "name":  "stages.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/subtasks/{subtask}/complete",
+                      "name":  null,
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@complete",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/tags",
+                      "name":  "tags.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/reminders/tags",
+                      "name":  "tags.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/reminders/tags/{tag}",
+                      "name":  "tags.show",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/reminders/tags/{tag}",
+                      "name":  "tags.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/reminders/tags/{tag}",
+                      "name":  "tags.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/user",
+                      "name":  "api.",
+                      "action":  "Closure",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/users/{user}/addLocationAdmin/{location}",
+                      "name":  null,
+                      "action":  "App\\Http\\Controllers\\UserController@assignLocationAdmin",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/applications",
+                      "name":  "api.v1.applications.index",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/applications",
+                      "name":  "api.v1.applications.store",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/applications/{application}",
+                      "name":  "api.v1.applications.show",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/v1/applications/{application}",
+                      "name":  "api.v1.applications.update",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/applications/{application}",
+                      "name":  "api.v1.applications.destroy",
+                      "action":  "App\\Http\\Controllers\\ApplicationController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/locations",
+                      "name":  "api.v1.locations.index",
+                      "action":  "App\\Http\\Controllers\\LocationController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/locations",
+                      "name":  "api.v1.locations.store",
+                      "action":  "App\\Http\\Controllers\\LocationController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/locations/{location}",
+                      "name":  "api.v1.locations.show",
+                      "action":  "App\\Http\\Controllers\\LocationController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/v1/locations/{location}",
+                      "name":  "api.v1.locations.update",
+                      "action":  "App\\Http\\Controllers\\LocationController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/locations/{location}",
+                      "name":  "api.v1.locations.destroy",
+                      "action":  "App\\Http\\Controllers\\LocationController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin|LocationAdmin|UserAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/login",
+                      "name":  "api.v1.",
+                      "action":  "App\\Http\\Controllers\\AuthController@login",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Routing\\Middleware\\ThrottleRequests:10,1"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/register",
+                      "name":  "api.v1.",
+                      "action":  "App\\Http\\Controllers\\AuthController@register",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/dashboard",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\DashboardController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/documents/upload",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\DocumentsController@upload",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/items",
+                      "name":  "api.v1.items.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/items",
+                      "name":  "api.v1.items.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/items/{item}",
+                      "name":  "api.v1.items.show",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/v1/reminders/items/{item}",
+                      "name":  "api.v1.items.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/items/{item}",
+                      "name":  "api.v1.items.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/items/{item}/complete",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@complete",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/items/{item}/documents/{document}",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\DocumentsController@attach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/items/{item}/documents/{document}",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\DocumentsController@detach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/items/{item}/notifications",
+                      "name":  "api.v1.notifications.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\NotificationsController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/items/{item}/notifications",
+                      "name":  "api.v1.notifications.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\NotificationsController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/items/{item}/notifications/{notification}",
+                      "name":  "api.v1.notifications.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\NotificationsController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/items/{item}/recurrences",
+                      "name":  "api.v1.recurrences.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\RecurrencesController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/items/{item}/recurrences",
+                      "name":  "api.v1.recurrences.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\RecurrencesController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/v1/reminders/items/{item}/recurrences/{recurrence}",
+                      "name":  "api.v1.recurrences.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\RecurrencesController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/items/{item}/recurrences/{recurrence}",
+                      "name":  "api.v1.recurrences.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\RecurrencesController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/items/{item}/reopen",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\ItemsController@reopen",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/items/{item}/stages/{stage}",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@attach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/items/{item}/stages/{stage}",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@detach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/items/{item}/subtasks",
+                      "name":  "api.v1.subtasks.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/items/{item}/subtasks",
+                      "name":  "api.v1.subtasks.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/items/{item}/subtasks/{subtask}",
+                      "name":  "api.v1.subtasks.show",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/v1/reminders/items/{item}/subtasks/{subtask}",
+                      "name":  "api.v1.subtasks.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/items/{item}/subtasks/{subtask}",
+                      "name":  "api.v1.subtasks.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/items/{item}/tags/{tag}",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@attach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/items/{item}/tags/{tag}",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@detach",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/search",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SearchController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/shares",
+                      "name":  "api.v1.shares.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SharingController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/shares",
+                      "name":  "api.v1.shares.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SharingController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/shares/{share}",
+                      "name":  "api.v1.shares.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SharingController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/stages",
+                      "name":  "api.v1.stages.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/stages",
+                      "name":  "api.v1.stages.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/stages/{stage}",
+                      "name":  "api.v1.stages.show",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/v1/reminders/stages/{stage}",
+                      "name":  "api.v1.stages.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/stages/{stage}",
+                      "name":  "api.v1.stages.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\StagesController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/subtasks/{subtask}/complete",
+                      "name":  "api.v1.",
+                      "action":  "App\\Reminders\\Http\\Controllers\\SubtasksController@complete",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/tags",
+                      "name":  "api.v1.tags.index",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@index",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/reminders/tags",
+                      "name":  "api.v1.tags.store",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@store",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/reminders/tags/{tag}",
+                      "name":  "api.v1.tags.show",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@show",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "PUT|PATCH",
+                      "uri":  "api/v1/reminders/tags/{tag}",
+                      "name":  "api.v1.tags.update",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@update",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "DELETE",
+                      "uri":  "api/v1/reminders/tags/{tag}",
+                      "name":  "api.v1.tags.destroy",
+                      "action":  "App\\Reminders\\Http\\Controllers\\TagsController@destroy",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "api/v1/user",
+                      "name":  "api.v1.",
+                      "action":  "Closure",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "POST",
+                      "uri":  "api/v1/users/{user}/addLocationAdmin/{location}",
+                      "name":  "api.v1.",
+                      "action":  "App\\Http\\Controllers\\UserController@assignLocationAdmin",
+                      "middleware":  [
+                                         "api",
+                                         "Illuminate\\Auth\\Middleware\\Authenticate:sanctum",
+                                         "Spatie\\Permission\\Middleware\\RoleMiddleware:SuperAdmin"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "sanctum/csrf-cookie",
+                      "name":  "sanctum.csrf-cookie",
+                      "action":  "Laravel\\Sanctum\\Http\\Controllers\\CsrfCookieController@show",
+                      "middleware":  [
+                                         "web"
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "storage/{path}",
+                      "name":  "storage.local",
+                      "action":  "Closure",
+                      "middleware":  [
+
+                                     ]
+                  },
+                  {
+                      "domain":  null,
+                      "method":  "GET|HEAD",
+                      "uri":  "up",
+                      "name":  null,
+                      "action":  "Closure",
+                      "middleware":  [
+
+                                     ]
+                  }
+              ],
+    "Count":  116
+}

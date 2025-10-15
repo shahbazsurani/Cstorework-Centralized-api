@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Schema;
 
 class BaseModel extends Authenticatable
 {
+    use HasFactory;
+
     protected $fillable = ['is_active'];
 
     protected static function booted()

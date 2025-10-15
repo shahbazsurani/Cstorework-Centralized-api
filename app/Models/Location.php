@@ -6,7 +6,7 @@ namespace App\Models;
 class Location extends BaseModel
 {
     protected $hidden = ['id'];
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'address', 'is_active'];
 
     public function users()
     {

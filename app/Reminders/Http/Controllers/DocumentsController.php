@@ -32,15 +32,17 @@ class DocumentsController extends Controller
         return response()->json($this->resource($doc), 201);
     }
 
-    public function attach(ReminderItem $item, ReminderDocument $document)
+    public function attach(ReminderItem $item, string $document)
     {
-        $item->documents()->syncWithoutDetaching([$document->id]);
+        $doc = ReminderDocument::where('hash', $document)->firstOrFail();
+        $item->documents()->syncWithoutDetaching([$doc->id]);
         return response()->json(['status' => 'attached']);
     }
 
-    public function detach(ReminderItem $item, ReminderDocument $document)
+    public function detach(ReminderItem $item, string $document)
     {
-        $item->documents()->detach($document->id);
+        $doc = ReminderDocument::where('hash', $document)->firstOrFail();
+        $item->documents()->detach($doc->id);
         return response()->json(['status' => 'detached']);
     }
 
