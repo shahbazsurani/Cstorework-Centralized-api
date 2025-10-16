@@ -7,8 +7,11 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Enums\Role;
 
+// Public auth endpoints
+Route::post('login', [AuthController::class, 'login'])->name('api.login');
 
-Route::middleware('auth:sanctum')->group(function () {
+
+Route::middleware(['auth:sanctum', \App\Http\Middleware\EnsureTokenNotExpired::class])->group(function () {
     // SuperAdmin only
     Route::middleware('role:'.Role::SuperAdmin->value)->group(function () {
         Route::apiResource('applications', ApplicationController::class);

@@ -70,11 +70,23 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
+        /** @var \App\Models\User $user */
         $user = Auth::user();
+        // Rotate: revoke previous tokens to avoid sprawl
+        try { $user->tokens()->delete(); } catch (\Throwable) {}
 
+        $new = $user->createToken('api-token');
+        // Set expiration (30 days by default); Sanctum will treat expired tokens as invalid
+        if (method_exists($new, 'accessToken') || property_exists($new, 'accessToken')) {
+            $tokenModel = $new->accessToken; // Laravel\Sanctum\PersonalAccessToken
+            if ($tokenModel) {
+                $ttl = (int) config('token-auth.token_ttl_minutes', 30);
+                $tokenModel->forceFill(['expires_at' => now()->addMinutes($ttl)])->save();
+            }
+        }
 
         return response()->json([
-            'token' => $user->createToken('api-token')->plainTextToken,
+            'token' => $new->plainTextToken,
             'user' => [
                 'name' => $user->name,
                 'email' => $user->email,

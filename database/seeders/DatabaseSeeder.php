@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
         // Seed roles and permissions
         $this->call(RolesAndPermissionsSeeder::class);
 
+        // Seed default Applications (base URLs per env)
+        $this->call(ApplicationSeeder::class);
+
         // Optionally create an initial SuperAdmin if env values are set
         $adminEmail = env('SEED_ADMIN_EMAIL');
         if ($adminEmail) {
