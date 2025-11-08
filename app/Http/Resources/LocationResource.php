@@ -17,6 +17,8 @@ class LocationResource extends JsonResource
         return [
             'hash' => $this->hash ?? null,
             'name' => $this->name,
+            'address' => $this->address,
+            'is_active' => $this->is_active,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

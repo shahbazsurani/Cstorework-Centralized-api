@@ -10,7 +10,6 @@ use App\Enums\Role;
 // Public auth endpoints
 Route::post('login', [AuthController::class, 'login'])->name('api.login');
 
-
 Route::middleware(['auth:sanctum', \App\Http\Middleware\EnsureTokenNotExpired::class])->group(function () {
     // SuperAdmin only
     Route::middleware('role:'.Role::SuperAdmin->value)->group(function () {

@@ -16,6 +16,7 @@ class LocationUpdateRequest extends FormRequest
     {
         return [
             'name' => ['sometimes', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:500'],
         ];
     }
 }
