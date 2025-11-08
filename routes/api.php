@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\LocationSettingsController;
 use App\Http\Controllers\UserController;
 use App\Enums\Role;
 
@@ -21,6 +22,11 @@ Route::middleware(['auth:sanctum', \App\Http\Middleware\EnsureTokenNotExpired::c
     Route::middleware('role:'.implode('|', [Role::SuperAdmin->value, Role::LocationAdmin->value, Role::UserAdmin->value]))->group(function () {
         Route::apiResource('locations', LocationController::class);
 
+        // Location settings routes
+        Route::post('locations/{location}/settings', [LocationSettingsController::class, 'store']);
+        Route::get('locations/{location}/settings', [LocationSettingsController::class, 'show']);
+        Route::put('locations/{location}/settings', [LocationSettingsController::class, 'update']);
+        Route::delete('locations/{location}/settings', [LocationSettingsController::class, 'destroy']);
     });
 
 });
