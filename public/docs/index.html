@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - Centralized API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 60px 20px 40px;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .search-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 18px 50px 18px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            font-size: 20px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            display: none;
+        }
+
+        .category-card.visible {
+            display: block;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .category-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .category-card h2 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.8em;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        .endpoint-count {
+            display: inline-block;
+            background: #f0f3ff;
+            color: #667eea;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .no-results {
+            text-align: center;
+            color: white;
+            font-size: 1.3em;
+            margin-top: 40px;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>API Documentation</h1>
+            <p>Comprehensive documentation for all API endpoints</p>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search documentation... (e.g., 'authentication', 'locations', 'reminders')">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+
+        <div class="categories">
+            <a href="authentication.html" class="category-card visible" data-keywords="authentication auth login token bearer password">
+                <span class="category-icon">🔐</span>
+                <h2>Authentication</h2>
+                <p>Login, token management, and authentication flows</p>
+                <span class="endpoint-count">2 endpoints</span>
+            </a>
+
+            <a href="applications.html" class="category-card visible" data-keywords="applications app">
+                <span class="category-icon">📱</span>
+                <h2>Applications</h2>
+                <p>Manage applications in the system</p>
+                <span class="endpoint-count">5 endpoints</span>
+            </a>
+
+            <a href="locations.html" class="category-card visible" data-keywords="locations location store address settings config configuration">
+                <span class="category-icon">📍</span>
+                <h2>Locations</h2>
+                <p>Location management and configuration settings</p>
+                <span class="endpoint-count">9 endpoints</span>
+            </a>
+
+            <a href="users.html" class="category-card visible" data-keywords="users user admin role permission assign">
+                <span class="category-icon">👥</span>
+                <h2>Users</h2>
+                <p>User management and role assignments</p>
+                <span class="endpoint-count">1 endpoint</span>
+            </a>
+
+            <a href="reminders.html" class="category-card visible" data-keywords="reminders reminder items categories schedules dashboard search">
+                <span class="category-icon">🔔</span>
+                <h2>Reminders</h2>
+                <p>Reminder module with items, categories, and schedules</p>
+                <span class="endpoint-count">20+ endpoints</span>
+            </a>
+        </div>
+
+        <div class="no-results" id="noResults">
+            No documentation found matching your search.
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centralized API Documentation</p>
+    </footer>
+
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.category-card');
+            const noResults = document.getElementById('noResults');
+            let hasResults = false;
+
+            if (searchTerm === '') {
+                // Show all cards when search is empty
+                cards.forEach(card => {
+                    card.classList.add('visible');
+                });
+                noResults.style.display = 'none';
+                return;
+            }
+
+            cards.forEach(card => {
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+                const title = card.querySelector('h2').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+
+                if (keywords.includes(searchTerm) || title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.classList.add('visible');
+                    hasResults = true;
+                } else {
+                    card.classList.remove('visible');
+                }
+            });
+
+            noResults.style.display = hasResults ? 'none' : 'block';
+        });
+    </script>
+</body>
+</html>

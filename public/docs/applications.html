@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications - API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">← Back to Documentation</a>
+        <div class="base-url">
+            <strong>Base URL:</strong> <code>http://your-domain.com/api</code>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="icon">📱</div>
+            <h1>Applications</h1>
+            <p>Manage applications in the system</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search endpoints...">
+        </div>
+
+        <div class="info-box">
+            <strong>Role Required:</strong> SuperAdmin only
+        </div>
+
+        <!-- GET /applications -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/applications</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/applications')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Retrieve a list of all applications.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span>
+            </div>
+            <details>
+                <summary>Request Headers</summary>
+                <pre><code>Authorization: Bearer {token}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "data": [
+        {
+            "id": 1,
+            "name": "Application Name",
+            "description": "Application description",
+            "created_at": "2025-01-01T00:00:00.000000Z",
+            "updated_at": "2025-01-01T00:00:00.000000Z"
+        }
+    ]
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- POST /applications -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/applications</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/applications')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Create a new application.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span>
+            </div>
+            <details>
+                <summary>Request Headers</summary>
+                <pre><code>Authorization: Bearer {token}
+Content-Type: application/json</code></pre>
+            </details>
+            <details>
+                <summary>Request Body</summary>
+                <pre><code>{
+    "name": "New Application",
+    "description": "Application description (optional)"
+}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (201)</summary>
+                <pre><code>{
+    "data": {
+        "id": 2,
+        "name": "New Application",
+        "description": "Application description",
+        "created_at": "2025-01-01T00:00:00.000000Z",
+        "updated_at": "2025-01-01T00:00:00.000000Z"
+    }
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- GET /applications/{id} -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/applications/{id}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/applications/{id}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Get details of a specific application by ID.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span>
+            </div>
+            <details>
+                <summary>Request Headers</summary>
+                <pre><code>Authorization: Bearer {token}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "data": {
+        "id": 1,
+        "name": "Application Name",
+        "description": "Application description",
+        "created_at": "2025-01-01T00:00:00.000000Z",
+        "updated_at": "2025-01-01T00:00:00.000000Z"
+    }
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- PUT/PATCH /applications/{id} -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="method patch">PATCH</span>
+                <span class="endpoint-path">/applications/{id}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/applications/{id}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Update an existing application.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span>
+            </div>
+            <details>
+                <summary>Request Headers</summary>
+                <pre><code>Authorization: Bearer {token}
+Content-Type: application/json</code></pre>
+            </details>
+            <details>
+                <summary>Request Body</summary>
+                <pre><code>{
+    "name": "Updated Application Name",
+    "description": "Updated description"
+}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "data": {
+        "id": 1,
+        "name": "Updated Application Name",
+        "description": "Updated description",
+        "created_at": "2025-01-01T00:00:00.000000Z",
+        "updated_at": "2025-01-01T12:00:00.000000Z"
+    }
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- DELETE /applications/{id} -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method delete">DELETE</span>
+                <span class="endpoint-path">/applications/{id}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/applications/{id}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Delete an application.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span>
+            </div>
+            <details>
+                <summary>Request Headers</summary>
+                <pre><code>Authorization: Bearer {token}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (204)</summary>
+                <pre><code>// No content</code></pre>
+            </details>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centralized API Documentation</p>
+    </footer>
+
+    <script src="docs.js"></script>
+</body>
+</html>

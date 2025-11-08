@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminders - API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">← Back to Documentation</a>
+        <div class="base-url">
+            <strong>Base URL:</strong> <code>http://your-domain.com/api</code>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="icon">🔔</div>
+            <h1>Reminders Module</h1>
+            <p>Comprehensive reminder system with items, categories, schedules, and more</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search endpoints...">
+        </div>
+
+        <div class="info-box">
+            <strong>Authentication Required:</strong> All reminders endpoints require valid authentication token.
+        </div>
+
+        <h2 style="color: #667eea; margin-top: 30px;">Dashboard & Search</h2>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/dashboard</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/dashboard')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Get dashboard overview with statistics and recent items.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/search</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/search')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Search through reminder items.
+            </div>
+        </div>
+
+        <h2 style="color: #667eea; margin-top: 50px;">Items Management</h2>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/items</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Retrieve a list of all reminder items.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/reminders/items</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Create a new reminder item.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/items/{item}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Get details of a specific reminder item.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="method patch">PATCH</span>
+                <span class="endpoint-path">/reminders/items/{item}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Update an existing reminder item.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method delete">DELETE</span>
+                <span class="endpoint-path">/reminders/items/{item}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Delete a reminder item.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/reminders/items/{item}/complete</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}/complete')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Mark a reminder item as complete.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/reminders/items/{item}/reopen</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}/reopen')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Reopen a completed reminder item.
+            </div>
+        </div>
+
+        <h2 style="color: #667eea; margin-top: 50px;">Subtasks</h2>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/items/{item}/subtasks</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}/subtasks')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                List all subtasks for a specific item.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/reminders/items/{item}/subtasks</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}/subtasks')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Create a new subtask for an item.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/items/{item}/subtasks/{subtask}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}/subtasks/{subtask}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Get details of a specific subtask.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="method patch">PATCH</span>
+                <span class="endpoint-path">/reminders/items/{item}/subtasks/{subtask}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}/subtasks/{subtask}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Update a subtask.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method delete">DELETE</span>
+                <span class="endpoint-path">/reminders/items/{item}/subtasks/{subtask}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/items/{item}/subtasks/{subtask}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Delete a subtask.
+            </div>
+        </div>
+
+        <h2 style="color: #667eea; margin-top: 50px;">Categories</h2>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/categories</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/categories')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Retrieve a list of all categories.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/reminders/categories</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/categories')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Create a new category.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/categories/{category}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/categories/{category}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Get details of a specific category.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="method patch">PATCH</span>
+                <span class="endpoint-path">/reminders/categories/{category}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/categories/{category}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Update a category.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method delete">DELETE</span>
+                <span class="endpoint-path">/reminders/categories/{category}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/categories/{category}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Delete a category.
+            </div>
+        </div>
+
+        <h2 style="color: #667eea; margin-top: 50px;">Schedules</h2>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/schedules</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/schedules')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Retrieve a list of all schedules.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/reminders/schedules</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/schedules')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Create a new schedule.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/schedules/{schedule}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/schedules/{schedule}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Get details of a specific schedule.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="method patch">PATCH</span>
+                <span class="endpoint-path">/reminders/schedules/{schedule}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/schedules/{schedule}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Update a schedule.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method delete">DELETE</span>
+                <span class="endpoint-path">/reminders/schedules/{schedule}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/schedules/{schedule}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Delete a schedule.
+            </div>
+        </div>
+
+        <h2 style="color: #667eea; margin-top: 50px;">Notifications</h2>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/notifications</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/notifications')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Retrieve a list of all notifications.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/reminders/notifications</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/notifications')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Create a new notification.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/reminders/notifications/{notification}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/notifications/{notification}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Get details of a specific notification.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="method patch">PATCH</span>
+                <span class="endpoint-path">/reminders/notifications/{notification}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/notifications/{notification}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Update a notification.
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method delete">DELETE</span>
+                <span class="endpoint-path">/reminders/notifications/{notification}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/notifications/{notification}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Delete a notification.
+            </div>
+        </div>
+
+        <h2 style="color: #667eea; margin-top: 50px;">Shares</h2>
+
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/reminders/shares</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/reminders/shares')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Share an item with another user.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centralized API Documentation</p>
+    </footer>
+
+    <script src="docs.js"></script>
+</body>
+</html>

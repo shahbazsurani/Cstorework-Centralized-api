@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locations - API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">← Back to Documentation</a>
+        <div class="base-url">
+            <strong>Base URL:</strong> <code>http://your-domain.com/api</code>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="icon">📍</div>
+            <h1>Locations</h1>
+            <p>Location management and configuration settings</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search endpoints...">
+        </div>
+
+        <div class="info-box">
+            <strong>Roles Required:</strong> SuperAdmin, LocationAdmin, or UserAdmin<br>
+            <strong>Access Control:</strong> SuperAdmin can access all locations. Other roles can only access locations they are assigned to.
+        </div>
+
+        <h2 style="color: #667eea; margin-top: 30px;">Location Management</h2>
+
+        <!-- GET /locations -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/locations</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/locations')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Retrieve a list of all locations. SuperAdmin sees all locations, other users see only locations they are assigned to.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span> <span class="middleware-tag">LocationAdmin</span> <span class="middleware-tag">UserAdmin</span>
+            </div>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "data": [
+        {
+            "hash": "abc123...",
+            "name": "Store Name",
+            "address": "123 Main St, City, State",
+            "is_active": true,
+            "created_at": "2025-01-01T00:00:00.000000Z",
+            "updated_at": "2025-01-01T00:00:00.000000Z"
+        }
+    ]
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- POST /locations -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/locations</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/locations')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Create a new location.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span> <span class="middleware-tag">LocationAdmin</span> <span class="middleware-tag">UserAdmin</span>
+            </div>
+            <details>
+                <summary>Request Body</summary>
+                <pre><code>{
+    "name": "New Store",
+    "address": "456 Oak Ave, City, State"
+}</code></pre>
+            </details>
+            <details>
+                <summary>Validation Rules</summary>
+                <pre><code>{
+    "name": "required|string|max:255",
+    "address": "nullable|string|max:500"
+}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (201)</summary>
+                <pre><code>{
+    "data": {
+        "hash": "xyz789...",
+        "name": "New Store",
+        "address": "456 Oak Ave, City, State",
+        "is_active": true,
+        "created_at": "2025-01-01T00:00:00.000000Z",
+        "updated_at": "2025-01-01T00:00:00.000000Z"
+    }
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- GET /locations/{hash} -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/locations/{hash}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/locations/{hash}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Get details of a specific location by hash. Users can only access locations they are assigned to (except SuperAdmin).
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span> <span class="middleware-tag">LocationAdmin</span> <span class="middleware-tag">UserAdmin</span>
+            </div>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "data": {
+        "hash": "abc123...",
+        "name": "Store Name",
+        "address": "123 Main St, City, State",
+        "is_active": true,
+        "created_at": "2025-01-01T00:00:00.000000Z",
+        "updated_at": "2025-01-01T00:00:00.000000Z"
+    }
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- PUT/PATCH /locations/{hash} -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="method patch">PATCH</span>
+                <span class="endpoint-path">/locations/{hash}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/locations/{hash}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Update an existing location. Users can only update locations they are assigned to (except SuperAdmin).
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span> <span class="middleware-tag">LocationAdmin</span> <span class="middleware-tag">UserAdmin</span>
+            </div>
+            <details>
+                <summary>Request Body</summary>
+                <pre><code>{
+    "name": "Updated Store Name",
+    "address": "789 New Address"
+}</code></pre>
+            </details>
+            <details>
+                <summary>Validation Rules</summary>
+                <pre><code>{
+    "name": "sometimes|string|max:255",
+    "address": "nullable|string|max:500"
+}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "data": {
+        "hash": "abc123...",
+        "name": "Updated Store Name",
+        "address": "789 New Address",
+        "is_active": true,
+        "created_at": "2025-01-01T00:00:00.000000Z",
+        "updated_at": "2025-01-01T12:00:00.000000Z"
+    }
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- DELETE /locations/{hash} -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method delete">DELETE</span>
+                <span class="endpoint-path">/locations/{hash}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/locations/{hash}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Delete a location. Users can only delete locations they are assigned to (except SuperAdmin).
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span> <span class="middleware-tag">LocationAdmin</span> <span class="middleware-tag">UserAdmin</span>
+            </div>
+            <details>
+                <summary>Success Response (204)</summary>
+                <pre><code>// No content</code></pre>
+            </details>
+        </div>
+
+        <h2 style="color: #667eea; margin-top: 50px;">Location Settings</h2>
+
+        <div class="info-box">
+            <strong>Description:</strong> Manage hierarchical configuration settings for each location. Settings are stored in a normalized database structure with categories and key-value pairs.<br>
+            <strong>Access Control:</strong> View requires LocationsView permission, Create/Update require LocationsUpdate permission, Delete requires LocationsDelete permission. Users can only manage settings for locations they are assigned to.
+        </div>
+
+        <!-- POST /locations/{hash}/settings -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/locations/{hash}/settings</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/locations/{hash}/settings')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Store location settings from hierarchical JSON data. Converts JSON structure to normalized database tables.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span> <span class="middleware-tag">LocationAdmin</span> <span class="middleware-tag">UserAdmin</span><br>
+                <strong>Permission:</strong> LocationsUpdate
+            </div>
+            <details>
+                <summary>Request Body Example</summary>
+                <pre><code>{
+    "settings": {
+        "StoreInfo": {
+            "StoreName": "My Store",
+            "StoreAddress": "123 Main St",
+            "GaLottery": {
+                "Active": "true",
+                "CommissionRate": "5.5"
+            }
+        },
+        "PaymentSettings": {
+            "AcceptCash": "true",
+            "AcceptCard": "true"
+        }
+    }
+}</code></pre>
+            </details>
+            <details>
+                <summary>Database Structure</summary>
+                <pre><code>// This JSON creates the following normalized structure:
+
+LocationSettingsCategories:
+- StoreInfo (parent_id: null)
+- GaLottery (parent_id: StoreInfo.id)
+- PaymentSettings (parent_id: null)
+
+LocationSettings:
+- StoreName = "My Store" (category_id: StoreInfo.id)
+- StoreAddress = "123 Main St" (category_id: StoreInfo.id)
+- Active = "true" (category_id: GaLottery.id)
+- CommissionRate = "5.5" (category_id: GaLottery.id)
+- AcceptCash = "true" (category_id: PaymentSettings.id)
+- AcceptCard = "true" (category_id: PaymentSettings.id)</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (201)</summary>
+                <pre><code>{
+    "message": "Settings saved successfully"
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- GET /locations/{hash}/settings -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="endpoint-path">/locations/{hash}/settings</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/locations/{hash}/settings')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Get all settings for a location in hierarchical JSON format.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span> <span class="middleware-tag">LocationAdmin</span> <span class="middleware-tag">UserAdmin</span><br>
+                <strong>Permission:</strong> LocationsView
+            </div>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "StoreInfo": {
+        "StoreName": "My Store",
+        "StoreAddress": "123 Main St",
+        "GaLottery": {
+            "Active": "true",
+            "CommissionRate": "5.5"
+        }
+    },
+    "PaymentSettings": {
+        "AcceptCash": "true",
+        "AcceptCard": "true"
+    }
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- PUT /locations/{hash}/settings -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method put">PUT</span>
+                <span class="endpoint-path">/locations/{hash}/settings</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/locations/{hash}/settings')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Update settings for a location. Replaces all existing settings with new data.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span> <span class="middleware-tag">LocationAdmin</span> <span class="middleware-tag">UserAdmin</span><br>
+                <strong>Permission:</strong> LocationsUpdate
+            </div>
+            <details>
+                <summary>Request Body Example</summary>
+                <pre><code>{
+    "settings": {
+        "StoreInfo": {
+            "StoreName": "Updated Store Name"
+        }
+    }
+}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "message": "Settings updated successfully"
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- DELETE /locations/{hash}/settings -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method delete">DELETE</span>
+                <span class="endpoint-path">/locations/{hash}/settings</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/locations/{hash}/settings')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Delete all settings for a location.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span> <span class="middleware-tag">LocationAdmin</span> <span class="middleware-tag">UserAdmin</span><br>
+                <strong>Permission:</strong> LocationsDelete
+            </div>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "message": "Settings deleted successfully"
+}</code></pre>
+            </details>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centralized API Documentation</p>
+    </footer>
+
+    <script src="docs.js"></script>
+</body>
+</html>

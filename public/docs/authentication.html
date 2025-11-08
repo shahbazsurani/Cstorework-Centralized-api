@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication - API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">← Back to Documentation</a>
+        <div class="base-url">
+            <strong>Base URL:</strong> <code>http://your-domain.com/api</code>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="icon">🔐</div>
+            <h1>Authentication</h1>
+            <p>Login, token management, and authentication flows</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search endpoints...">
+        </div>
+
+        <div class="info-box">
+            <strong>Note:</strong> Authentication endpoints are public and do not require Bearer tokens. After successful login, use the returned token in the <code>Authorization: Bearer {token}</code> header for subsequent requests.
+        </div>
+
+        <!-- POST /login -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/login</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/login')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Login to the system and receive authentication token. Token expires after 30 minutes.
+            </div>
+            <div class="info-box">
+                <strong>Public Endpoint:</strong> No authentication required
+            </div>
+            <details>
+                <summary>Request Body</summary>
+                <pre><code>{
+    "email": "user@example.com",
+    "password": "your_password"
+}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "message": "Login successful",
+    "token": "1|abcdefghijklmnopqrstuvwxyz1234567890",
+    "user": {
+        "hash": "abc123...",
+        "name": "John Doe",
+        "email": "user@example.com",
+        "roles": ["SuperAdmin"],
+        "permissions": ["ApplicationsView", "ApplicationsCreate", ...]
+    }
+}</code></pre>
+            </details>
+            <details>
+                <summary>Error Responses</summary>
+                <pre><code>// 401 - Invalid Credentials
+{
+    "message": "Invalid credentials"
+}
+
+// 422 - Validation Error
+{
+    "message": "The email field is required.",
+    "errors": {
+        "email": ["The email field is required."],
+        "password": ["The password field is required."]
+    }
+}</code></pre>
+            </details>
+        </div>
+
+        <!-- POST /logout -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/logout</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/logout')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Logout from the system and invalidate the current authentication token.
+            </div>
+            <div class="middleware">
+                <strong>Authentication Required:</strong> <span class="middleware-tag">Bearer Token</span>
+            </div>
+            <details>
+                <summary>Request Headers</summary>
+                <pre><code>Authorization: Bearer 1|abcdefghijklmnopqrstuvwxyz1234567890</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "message": "Logged out successfully"
+}</code></pre>
+            </details>
+            <details>
+                <summary>Error Responses</summary>
+                <pre><code>// 401 - Unauthorized
+{
+    "message": "Unauthenticated."
+}</code></pre>
+            </details>
+        </div>
+
+        <div class="info-box" style="margin-top: 40px;">
+            <h3 style="margin-bottom: 10px;">Token Management</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>Token Expiration:</strong> Tokens expire after 30 minutes of inactivity</li>
+                <li><strong>Token Format:</strong> Sanctum Bearer token (e.g., "1|abcd1234...")</li>
+                <li><strong>Storage:</strong> Store token securely (e.g., secure HTTP-only cookie or secure storage)</li>
+                <li><strong>Usage:</strong> Include in Authorization header as <code>Bearer {token}</code></li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="margin-top: 20px;">
+            <h3 style="margin-bottom: 10px;">Common Authentication Errors</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>401 Unauthenticated:</strong> Token is missing, invalid, or expired</li>
+                <li><strong>403 Forbidden:</strong> Valid token but insufficient permissions for the requested resource</li>
+                <li><strong>422 Validation Error:</strong> Invalid request body format or missing required fields</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centralized API Documentation</p>
+    </footer>
+
+    <script src="docs.js"></script>
+</body>
+</html>

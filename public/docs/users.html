@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">← Back to Documentation</a>
+        <div class="base-url">
+            <strong>Base URL:</strong> <code>http://your-domain.com/api</code>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="icon">👥</div>
+            <h1>Users</h1>
+            <p>User management and role assignments</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search endpoints...">
+        </div>
+
+        <div class="info-box">
+            <strong>Role Required:</strong> SuperAdmin only
+        </div>
+
+        <!-- POST /users/{user}/addLocationAdmin/{location} -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="endpoint-path">/users/{user}/addLocationAdmin/{location}</span>
+                <button class="copy-btn" onclick="copyToClipboard('/api/users/{user}/addLocationAdmin/{location}')">Copy URL</button>
+            </div>
+            <div class="endpoint-description">
+                Assign a user as LocationAdmin for a specific location.
+            </div>
+            <div class="middleware">
+                <strong>Roles:</strong> <span class="middleware-tag">SuperAdmin</span>
+            </div>
+            <details>
+                <summary>URL Parameters</summary>
+                <pre><code>{user}     - User hash or ID
+{location} - Location hash or ID</code></pre>
+            </details>
+            <details>
+                <summary>Request Headers</summary>
+                <pre><code>Authorization: Bearer {token}</code></pre>
+            </details>
+            <details>
+                <summary>Success Response (200)</summary>
+                <pre><code>{
+    "message": "User assigned as LocationAdmin for the location successfully"
+}</code></pre>
+            </details>
+            <details>
+                <summary>Error Responses</summary>
+                <pre><code>// 404 - Not Found
+{
+    "message": "User not found"
+}
+
+// 404 - Not Found
+{
+    "message": "Location not found"
+}
+
+// 403 - Forbidden
+{
+    "message": "Unauthorized"
+}</code></pre>
+            </details>
+        </div>
+
+        <div class="info-box" style="margin-top: 40px;">
+            <h3 style="margin-bottom: 10px;">User Roles</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>SuperAdmin:</strong> Full access to all system resources and features</li>
+                <li><strong>LocationAdmin:</strong> Can manage locations they are assigned to</li>
+                <li><strong>UserAdmin:</strong> Can manage users and access assigned locations</li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="margin-top: 20px;">
+            <h3 style="margin-bottom: 10px;">Permissions System</h3>
+            <p style="margin-bottom: 10px;">Each role has specific permissions that control access to resources:</p>
+            <ul style="margin-left: 20px;">
+                <li><strong>View Permissions:</strong> ApplicationsView, LocationsView, UsersView</li>
+                <li><strong>Create Permissions:</strong> ApplicationsCreate, LocationsCreate, UsersCreate</li>
+                <li><strong>Update Permissions:</strong> ApplicationsUpdate, LocationsUpdate, UsersUpdate</li>
+                <li><strong>Delete Permissions:</strong> ApplicationsDelete, LocationsDelete, UsersDelete</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centralized API Documentation</p>
+    </footer>
+
+    <script src="docs.js"></script>
+</body>
+</html>
